@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <title>Word-Counter</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        div{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        textarea{
+            border: 2px solid;
+            font-size: 1.2rem;
+            outline:none;
+            padding: 10px 2px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Word-Counter</h1>
+        <br>
+        <p>set word limit</p>
+        <input id="wordlimit" onchange="wordlimitinput()" >
+        <br>
+        <textarea cols="80" rows="20" type="text" id="myInput" oninput="countWords()"></textarea>
+        <br>
+        <p id="show1">Total number of words = 0</p> 
+        <p id="show2">Number of words remaining = 0</p>   
+    </div>
+    <script>
+        const countWords = () =>{
+            let wcount=document.getElementById('myInput').value;
+            wcount=wcount.match(/\b[-?(\w+)?]+\b/gi);
+            wcount=wcount.length;
+            let val=document.getElementById('wordlimit').value;
+            document.getElementById("show1").innerHTML="Total number of words = "+wcount;
+            document.getElementById("show2").innerHTML="Number of words remaining = "+(val-wcount);
+        }
+        const wordlimitinput=()=>{
+            let val=document.getElementById('wordlimit').value;
+            document.getElementById("show2").innerHTML="Number of words remaining = "+val;
+        } 
+    </script>
+</body>
+</html>
